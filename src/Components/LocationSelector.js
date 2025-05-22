@@ -40,45 +40,62 @@ const LocationSelector = () => {
   return (
     <div style={{ padding: "20px" }}>
       <h2>Select Location</h2>
-
+  
       {/* Country Dropdown */}
-      <select value={selectedCountry} onChange={(e) => {
-        setSelectedCountry(e.target.value);
-        setSelectedState('');
-        setSelectedCity('');
-        setCities([]);
-      }}>
+      <select
+        data-testid="country"
+        value={selectedCountry}
+        onChange={(e) => {
+          setSelectedCountry(e.target.value);
+          setSelectedState('');
+          setSelectedCity('');
+          setStates([]);
+          setCities([]);
+        }}
+      >
         <option value="">Select Country</option>
         {countries.map((country) => (
           <option key={country} value={country}>{country}</option>
         ))}
       </select>
-
+  
       {/* State Dropdown */}
-      <select value={selectedState} onChange={(e) => {
-        setSelectedState(e.target.value);
-        setSelectedCity('');
-      }} disabled={!selectedCountry}>
+      <select
+        data-testid="state"
+        value={selectedState}
+        onChange={(e) => {
+          setSelectedState(e.target.value);
+          setSelectedCity('');
+          setCities([]);
+        }}
+        disabled={!selectedCountry}
+      >
         <option value="">Select State</option>
         {states.map((state) => (
           <option key={state} value={state}>{state}</option>
         ))}
       </select>
-
+  
       {/* City Dropdown */}
-      <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} disabled={!selectedState}>
+      <select
+        data-testid="city"
+        value={selectedCity}
+        onChange={(e) => setSelectedCity(e.target.value)}
+        disabled={!selectedState}
+      >
         <option value="">Select City</option>
         {cities.map((city) => (
           <option key={city} value={city}>{city}</option>
         ))}
       </select>
-
-      {/* Result */}
+  
+      {/* Final Display */}
       {selectedCountry && selectedState && selectedCity && (
         <h3>You selected {selectedCity}, {selectedState}, {selectedCountry}</h3>
       )}
     </div>
   );
+  
 };
 
 export default LocationSelector;
