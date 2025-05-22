@@ -35,12 +35,12 @@ const LocationSelector = () => {
         .then((data) => setCities(data))
         .catch((err) => console.error("Error fetching cities:", err));
     }
-  }, [selectedState , selectedCountry]);
+  }, [selectedState, selectedCountry]);
 
   return (
     <div style={{ padding: "20px" }}>
       <h2>Select Location</h2>
-  
+
       {/* Country Dropdown */}
       <select
         data-testid="country"
@@ -58,7 +58,7 @@ const LocationSelector = () => {
           <option key={country} value={country}>{country}</option>
         ))}
       </select>
-  
+
       {/* State Dropdown */}
       <select
         data-testid="state"
@@ -75,7 +75,7 @@ const LocationSelector = () => {
           <option key={state} value={state}>{state}</option>
         ))}
       </select>
-  
+
       {/* City Dropdown */}
       <select
         data-testid="city"
@@ -88,14 +88,13 @@ const LocationSelector = () => {
           <option key={city} value={city}>{city}</option>
         ))}
       </select>
-  
-      {/* Final Display */}
+
+      {/* Display Selection */}
       {selectedCountry && selectedState && selectedCity && (
         <h3>You selected {selectedCity}, {selectedState}, {selectedCountry}</h3>
       )}
     </div>
   );
-  
 };
 
 export default LocationSelector;
